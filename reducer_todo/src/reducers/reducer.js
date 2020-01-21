@@ -3,7 +3,7 @@ export const initialState = [
     task: "create some initial state for my reducer",
     completed: false,
     createdAt: new Date(),
-    dueBy: new Date("01/23/2020"),
+    dueBy: new Date(),
     tags: ["javascript", "state management"]
   },
   {

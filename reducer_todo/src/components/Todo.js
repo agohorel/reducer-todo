@@ -46,7 +46,7 @@ const Task = styled.h2`
 `;
 
 const DueDate = styled.h4`
-  background-color: ${props => (props.now > props.due ? "red" : "green")};
+  background-color: ${props => (props.now > props.due ? "#cc2e0a" : "#00b064")};
   padding: 0.25rem;
   margin-bottom: 1rem;
 `;
