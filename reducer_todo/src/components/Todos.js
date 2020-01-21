@@ -1,9 +1,13 @@
-import React from 'react'
+import React from "react";
 
-export const Todos = () => {
-    return (
-        <div>
-            
-        </div>
-    )
-}
+import { Todo } from "./Todo";
+
+export const Todos = ({ todos }) => {
+  return (
+    <>
+      {todos.map(todo => (
+        <h2>{todo.task}</h2>
+      ))}
+    </>
+  );
+};
