@@ -4,10 +4,21 @@ export const AddTodo = ({ reducer: { state, dispatch } }) => {
   const [formData, setFormData] = useState({});
 
   const handleInput = e => {
-    if (e.target.id === "tags") {
-      setFormData({ ...formData, [e.target.id]: e.target.value.split(",") });
-    } else {
-      setFormData({ ...formData, [e.target.id]: e.target.value });
+    switch (e.target.id) {
+      case "tags":
+        return setFormData({
+          ...formData,
+          [e.target.id]: e.target.value.split(",")
+        });
+
+      case "dueBy":
+        return setFormData({
+          ...formData,
+          [e.target.id]: new Date(e.target.value)
+        });
+        
+      default:
+        return setFormData({ ...formData, [e.target.id]: e.target.value });
     }
   };
 
@@ -30,8 +41,8 @@ export const AddTodo = ({ reducer: { state, dispatch } }) => {
     <form>
       <label htmlFor="task">task:</label>
       <input type="text" id="task" onChange={handleInput} />
-      <label htmlFor="due">due by:</label>
-      <input type="date" id="due" onChange={handleInput} />
+      <label htmlFor="dueBy">due by:</label>
+      <input type="date" id="dueBy" onChange={handleInput} />
       <label htmlFor="tags">tags:</label>
       <input type="text" id="tags" onChange={handleInput} />
       <button onClick={addTodo}>add todo</button>
