@@ -15,7 +15,7 @@ export const Todo = ({ todo, dispatch }) => {
     <TodoItem onClick={toggleCompleted}>
       <Task completed={todo.completed}>{todo.task}</Task>
       <DueDate now={now} due={todo.dueBy}>
-        {todo.dueBy.toLocaleDateString()}
+        due by: {todo.dueBy.toLocaleDateString()}
       </DueDate>
       <h4>tags:</h4>
       <Tags>
@@ -33,18 +33,22 @@ const TodoItem = styled.div`
   transition: 0.2s ease-out all;
 `;
 
-const Task = styled.h3`
+const Task = styled.h2`
   text-decoration: ${props => (props.completed ? "line-through" : "null")};
+  margin-bottom: .5rem;
+  color: #eee;
 
   :hover {
     cursor: pointer;
     background-color: #4c4c4c;
-    color: #eee;
+    color: #0c0c0c;
   }
 `;
 
 const DueDate = styled.h4`
   background-color: ${props => (props.now > props.due ? "red" : "green")};
+  padding: 0.25rem;
+  margin-bottom: 1rem;
 `;
 
 const Tags = styled.div`
@@ -54,7 +58,7 @@ const Tags = styled.div`
 const Tag = styled.p`
   background-color: #1c1c1c;
   color: white;
-  padding: 0.25rem 0.5rem;
+  padding: 0.4rem 0.65rem;
 
   :not(:last-child) {
     margin-right: 1rem;

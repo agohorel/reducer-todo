@@ -1,5 +1,7 @@
 import React, { useState } from "react";
 
+import { Form } from "../styles/form";
+
 export const AddTodo = ({ reducer: { state, dispatch } }) => {
   const [formData, setFormData] = useState({});
 
@@ -16,7 +18,7 @@ export const AddTodo = ({ reducer: { state, dispatch } }) => {
           ...formData,
           [e.target.id]: new Date(e.target.value)
         });
-        
+
       default:
         return setFormData({ ...formData, [e.target.id]: e.target.value });
     }
@@ -38,7 +40,7 @@ export const AddTodo = ({ reducer: { state, dispatch } }) => {
   };
 
   return (
-    <form>
+    <Form>
       <label htmlFor="task">task:</label>
       <input type="text" id="task" onChange={handleInput} />
       <label htmlFor="dueBy">due by:</label>
@@ -47,6 +49,6 @@ export const AddTodo = ({ reducer: { state, dispatch } }) => {
       <input type="text" id="tags" onChange={handleInput} />
       <button onClick={addTodo}>add todo</button>
       <button onClick={clearCompleted}>clear completed</button>
-    </form>
+    </Form>
   );
 };
