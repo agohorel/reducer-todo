@@ -2,11 +2,11 @@ import React from "react";
 
 import { Todo } from "./Todo";
 
-export const Todos = ({ todos }) => {
+export const Todos = ({ reducer: { state, dispatch } }) => {
   return (
     <>
-      {todos.map(todo => (
-        <h2>{todo.task}</h2>
+      {state.map(todo => (
+        <Todo key={todo.createdAt} todo={todo} dispatch={dispatch}></Todo>
       ))}
     </>
   );

@@ -14,6 +14,14 @@ export const todoReducer = (state, action) => {
   switch (type) {
     case "ADD_TODO":
       return [...state, payload];
+    case "TOGGLE_COMPLETED":
+      return state.map(todo => {
+        if (todo.createdAt === payload) {
+          return { ...todo, completed: !todo.completed };
+        } else {
+          return { ...todo };
+        }
+      });
     default:
       return state;
   }
