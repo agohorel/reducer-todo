@@ -19,6 +19,13 @@ export const AddTodo = ({ reducer: { state, dispatch } }) => {
     });
   };
 
+  const clearCompleted = e => {
+    e.preventDefault();
+    dispatch({
+      type: "CLEAR_COMPLETED"
+    });
+  };
+
   return (
     <form>
       <label htmlFor="task">task:</label>
@@ -28,6 +35,7 @@ export const AddTodo = ({ reducer: { state, dispatch } }) => {
       <label htmlFor="tags">tags:</label>
       <input type="text" id="tags" onChange={handleInput} />
       <button onClick={addTodo}>add todo</button>
+      <button onClick={clearCompleted}>clear completed</button>
     </form>
   );
 };
