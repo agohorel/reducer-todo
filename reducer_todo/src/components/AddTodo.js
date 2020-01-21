@@ -4,14 +4,18 @@ export const AddTodo = ({ reducer: { state, dispatch } }) => {
   const [formData, setFormData] = useState({});
 
   const handleInput = e => {
-    setFormData({ ...formData, [e.target.id]: e.target.value });
+    if (e.target.id === "tags") {
+      setFormData({ ...formData, [e.target.id]: e.target.value.split(",") });
+    } else {
+      setFormData({ ...formData, [e.target.id]: e.target.value });
+    }
   };
 
   const addTodo = e => {
     e.preventDefault();
     dispatch({
       type: "ADD_TODO",
-      payload: { ...formData, createdAt: Date.now() }
+      payload: { ...formData, createdAt: Date.now(), completed: false }
     });
   };
 
