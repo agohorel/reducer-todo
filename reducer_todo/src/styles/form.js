@@ -7,7 +7,6 @@ export const Form = styled.form`
   justify-content: center;
   background-color: #1c1c1c;
   padding: 0.5rem;
-  min-width: 500px;
 
   label {
     color: #efefef;
@@ -37,5 +36,13 @@ export const Form = styled.form`
 
   * {
     margin: 0.25rem;
+  }
+
+  @media (max-width: 870px) {
+    flex-direction: column;
+
+    input {
+      width: 67%;
+    }
   }
 `;

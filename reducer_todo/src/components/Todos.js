@@ -19,4 +19,12 @@ const TodoContainer = styled.main`
   grid-template-rows: repeat(auto, 1fr);
   grid-gap: 1rem;
   padding: 1rem;
+
+  @media (max-width: 1200px) {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  @media (max-width: 900px) {
+    grid-template-columns: 1fr;
+  }
 `;
