@@ -1,9 +1,10 @@
 import React, { useState } from "react";
-
+// import { useLocalStorage } from "../hooks/useLocalStorage";
 import { Form } from "../styles/form";
 
 export const AddTodo = ({ reducer: { state, dispatch } }) => {
   const [formData, setFormData] = useState({});
+//   const [localStorage, setLocalStorage] = useLocalStorage("saved_todos", []);
 
   const handleInput = e => {
     switch (e.target.id) {
@@ -26,10 +27,12 @@ export const AddTodo = ({ reducer: { state, dispatch } }) => {
 
   const addTodo = e => {
     e.preventDefault();
+    const payload = { ...formData, createdAt: Date.now(), completed: false };
     dispatch({
       type: "ADD_TODO",
-      payload: { ...formData, createdAt: Date.now(), completed: false }
+      payload
     });
+    // setLocalStorage([...state, payload]);
   };
 
   const clearCompleted = e => {
@@ -37,6 +40,8 @@ export const AddTodo = ({ reducer: { state, dispatch } }) => {
     dispatch({
       type: "CLEAR_COMPLETED"
     });
+
+    // setLocalStorage(state.filter(todo => !todo.completed));
   };
 
   return (

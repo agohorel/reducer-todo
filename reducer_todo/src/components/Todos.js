@@ -3,11 +3,11 @@ import styled from "styled-components";
 
 import { Todo } from "./Todo";
 
-export const Todos = ({ reducer: { state, dispatch } }) => {
+export const Todos = ({ reducer }) => {
   return (
     <TodoContainer>
-      {state.map(todo => (
-        <Todo key={todo.createdAt} todo={todo} dispatch={dispatch}></Todo>
+      {reducer.state.map(todo => (
+        <Todo key={todo.createdAt} todo={todo} reducer={reducer}></Todo>
       ))}
     </TodoContainer>
   );

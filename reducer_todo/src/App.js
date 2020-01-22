@@ -8,7 +8,6 @@ import GlobalStyle from "./styles/global";
 
 function App() {
   const [state, dispatch] = useReducer(todoReducer, initialState);
-  console.log(state);
   return (
     <>
       <GlobalStyle></GlobalStyle>

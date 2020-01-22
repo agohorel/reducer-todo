@@ -1,7 +1,11 @@
-import React from "react";
+import React, { useEffect } from "react";
 import styled from "styled-components";
+import { useLocalStorage } from "../hooks/useLocalStorage";
 
-export const Todo = ({ todo, dispatch }) => {
+export const Todo = ({ todo, reducer: { state, dispatch } }) => {
+  const [localStorage, setLocalStorage] = useLocalStorage("saved_todos");
+  const now = new Date();
+
   const toggleCompleted = e => {
     dispatch({
       type: "TOGGLE_COMPLETED",
@@ -9,13 +13,21 @@ export const Todo = ({ todo, dispatch }) => {
     });
   };
 
-  const now = new Date();
+  // living on the edge lmao
+  useEffect(() => {
+    const delay = setTimeout(() => {
+      setLocalStorage([...state]);
+    }, 1000);
+    return () => {
+      clearTimeout(delay);
+    };
+  }, [state]);
 
   return (
     <TodoItem onClick={toggleCompleted}>
       <Task completed={todo.completed}>{todo.task}</Task>
-      <DueDate now={now} due={todo.dueBy}>
-        due by: {todo.dueBy.toLocaleDateString()}
+      <DueDate now={now} due={new Date(todo.dueBy)}>
+        due by: {new Date(todo.dueBy).toISOString().substring(0, 10)}
       </DueDate>
       <h4>tags:</h4>
       <Tags>
@@ -35,7 +47,7 @@ const TodoItem = styled.div`
 
 const Task = styled.h2`
   text-decoration: ${props => (props.completed ? "line-through" : "null")};
-  margin-bottom: .5rem;
+  margin-bottom: 0.5rem;
   color: #eee;
 
   :hover {
